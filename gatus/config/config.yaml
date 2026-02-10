@@ -1,24 +1,27 @@
-# FILL IN THE MISSING VALUES BELOW
 alerting:
-  ???:
-    token: "<github-token>" # WARN: DO NOT CHANGE THIS LINE
-# FILL IN THE MISSING VALUES ABOVE
+  github:
+    repository: "BayuArga669/gatus"
+    [cite_start]token: "$GITHUB_TOKEN" [cite: 124]
+    default-alert:
+      [cite_start]failure-threshold: 3 [cite: 129]
+      [cite_start]success-threshold: 5 [cite: 129]
+      [cite_start]send-on-resolved: true [cite: 129]
 
-# FILL IN THE MISSING VALUES BELOW
 endpoints:
-  - name: Leantime
-    url: <leantime-url> # WARN: DO NOT CHANGE THIS LINE
-    interval:
+  - name: "Leantime"
+    [cite_start]url: "http://$ALB_ENDPOINT" [cite: 126]
+    [cite_start]interval: 30s [cite: 127]
     conditions:
+      - [cite_start]"[STATUS] == 200" [cite: 127]
+      - [cite_start]"[RESPONSE_TIME] < 300" [cite: 127]
     alerts:
-      - type: ???
-        description: "Sensei, Leantime is down! Please check and fix it."
+      - type: github
 
-  - name: Gatus
-    url: <gatus-url> # WARN: DO NOT CHANGE THIS LINE
-    interval:
+  - name: "Gatus"
+    [cite_start]url: "http://$ALB_ENDPOINT:8080" [cite: 126, 218]
+    [cite_start]interval: 1m [cite: 128]
     conditions:
+      - [cite_start]"[STATUS] == 200" [cite: 128]
+      - [cite_start]"[RESPONSE_TIME] < 500" [cite: 128]
     alerts:
-      - type: ???
-        description: "Sensei, Gatus is down! Please check and fix it."
-# FILL IN THE MISSING VALUES BELOW
+      - type: github
